@@ -71,9 +71,69 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-leetcode-45" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-leetcode/leetcode-1005" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/04/01/leetcode-45/" class="article-date">
+    <a href="/2025/04/04/leetcode/leetcode-1005/" class="article-date">
+  <time class="dt-published" datetime="2025-04-04T09:00:00.000Z" itemprop="datePublished">2025-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>►<a class="article-category-link" href="/categories/LeetCode/maximize-sum-of-array-after-k-negations/">maximize-sum-of-array-after-k-negations</a>►<a class="article-category-link" href="/categories/LeetCode/maximize-sum-of-array-after-k-negations/1005-maximize-sum-of-array-after-k-negations/">1005 maximize-sum-of-array-after-k-negations</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/04/04/leetcode/leetcode-1005/">maximize-sum-of-array-after-k-negations(leetcode 1005)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Problem-Description"><a href="#1-Problem-Description" class="headerlink" title="1 Problem Description"></a>1 Problem Description</h1><p>link: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/description/">(https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/description/)</a></p>
+<p>Given an integer array nums and an integer k, modify the array in the following way:</p>
+<p>choose an index i and replace nums[i] with -nums[i].<br>You should apply this process exactly k times. You may choose the same index i multiple times.</p>
+<p>Return the largest possible sum of the array after modifying it in this way.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [4,2,3], k = 1</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Choose index 1 and nums becomes [4,-2,3].</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3,-1,0,2], k = 3</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: Choose indices (1, 2, 2) and nums becomes [3,1,0,2].</span><br></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [2,-3,-1,5,-4], k = 2</span><br><span class="line">Output: 13</span><br><span class="line">Explanation: Choose indices (1, 4) and nums becomes [2,3,-1,5,4]</span><br></pre></td></tr></table></figure>
+<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><ol>
+<li>We want to find the most negative number each time, so we need to sort the array.</li>
+<li>If all negative numbers have been flipped, we should flip the smallest element.</li>
+<li>How to sort an array by absolute value in Java?</li>
+<li>How to sum an array in Java?</li>
+</ol>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int largestSumAfterKNegations(int[] nums, int k) &#123;</span><br><span class="line">        // Step 1: Sort the array by absolute value in descending order</span><br><span class="line">        nums = Arrays.stream(nums)</span><br><span class="line">                .boxed()</span><br><span class="line">                .sorted((a, b) -&gt; Integer.compare(Math.abs(b), Math.abs(a)))</span><br><span class="line">                .mapToInt(Integer::intValue)</span><br><span class="line">                .toArray();</span><br><span class="line"></span><br><span class="line">        // Step 2: Convert negative numbers to positive while k is available</span><br><span class="line">        for (int i = 0; i &lt; nums.length &amp;&amp; k &gt; 0; i++) &#123;</span><br><span class="line">            if (nums[i] &lt; 0) &#123;</span><br><span class="line">                nums[i] = -nums[i];</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Step 3: If k is still odd, flip the smallest element</span><br><span class="line">        if (k % 2 == 1) &#123;</span><br><span class="line">            nums[nums.length - 1] = -nums[nums.length - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Step 4: Return the sum of the modified array</span><br><span class="line">        return Arrays.stream(nums).sum();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/04/04/leetcode/leetcode-1005/" data-id="cm92lsi8p0003fo6k85d6aohx" data-title="maximize-sum-of-array-after-k-negations(leetcode 1005)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-leetcode/leetcode-45" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/01/leetcode/leetcode-45/" class="article-date">
   <time class="dt-published" datetime="2025-04-01T06:00:00.000Z" itemprop="datePublished">2025-04-01</time>
 </a>
     
@@ -89,7 +149,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/04/01/leetcode-45/">Jump Game II（LeetCode 45）</a>
+      <a class="p-name article-title" href="/2025/04/01/leetcode/leetcode-45/">Jump Game II（LeetCode 45）</a>
     </h1>
   
 
@@ -110,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/01/leetcode-45/" data-id="cm8y4lu640003be6k0h2t28ex" data-title="Jump Game II（LeetCode 45）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/04/01/leetcode/leetcode-45/" data-id="cm92lsi8q0004fo6k1n393uca" data-title="Jump Game II（LeetCode 45）" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -124,9 +184,9 @@
 
 
   
-    <article id="post-leetcode-55" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-leetcode/leetcode-55" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/03/28/leetcode-55/" class="article-date">
+    <a href="/2025/03/28/leetcode/leetcode-55/" class="article-date">
   <time class="dt-published" datetime="2025-03-28T04:00:00.000Z" itemprop="datePublished">2025-03-28</time>
 </a>
     
@@ -142,7 +202,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/03/28/leetcode-55/">Jump Game（LeetCode 55）</a>
+      <a class="p-name article-title" href="/2025/03/28/leetcode/leetcode-55/">Jump Game（LeetCode 55）</a>
     </h1>
   
 
@@ -162,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/28/leetcode-55/" data-id="cm8y4lu650004be6k3jrdh7rm" data-title="Jump Game（LeetCode 55）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/28/leetcode/leetcode-55/" data-id="cm92lsi8u0007fo6k7qyzhkx0" data-title="Jump Game（LeetCode 55）" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -240,7 +300,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/27/My-First-Blog/" data-id="cm8y4lu5z0001be6kc7oi1imu" data-title="Hexo init" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/27/My-First-Blog/" data-id="cm92lsi8l0001fo6khama8m3o" data-title="Hexo init" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -291,7 +351,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/27/hello-world/" data-id="cm8y4lu620002be6kgv8ohsji" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/27/hello-world/" data-id="cm92lsi8o0002fo6kbqzd54p3" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -313,7 +373,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/45-Jump-Game-II/">45 Jump Game II</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/55-Jump-Game/">55 Jump Game</a></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/45-Jump-Game-II/">45 Jump Game II</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/55-Jump-Game/">55 Jump Game</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/maximize-sum-of-array-after-k-negations/">maximize-sum-of-array-after-k-negations</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/maximize-sum-of-array-after-k-negations/1005-maximize-sum-of-array-after-k-negations/">1005 maximize-sum-of-array-after-k-negations</a></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -323,7 +383,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/45-Jump-Game-II/" rel="tag">45 Jump Game II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/55-Jump-Game/" rel="tag">55 Jump Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/45-Jump-Game-II/" rel="tag">45 Jump Game II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/55-Jump-Game/" rel="tag">55 Jump Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
     </div>
   </div>
 
@@ -333,7 +393,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/45-Jump-Game-II/" style="font-size: 10px;">45 Jump Game II</a> <a href="/tags/55-Jump-Game/" style="font-size: 10px;">55 Jump Game</a> <a href="/tags/Greedy-Algorithm/" style="font-size: 20px;">Greedy Algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a>
+      <a href="/tags/1005-maximize-sum-of-array-after-k-negations/" style="font-size: 10px;">1005 maximize-sum-of-array-after-k-negations</a> <a href="/tags/45-Jump-Game-II/" style="font-size: 10px;">45 Jump Game II</a> <a href="/tags/55-Jump-Game/" style="font-size: 10px;">55 Jump Game</a> <a href="/tags/Greedy-Algorithm/" style="font-size: 20px;">Greedy Algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a>
     </div>
   </div>
 
@@ -355,11 +415,15 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
       <ul>
         
           <li>
-            <a href="/2025/04/01/leetcode-45/">Jump Game II（LeetCode 45）</a>
+            <a href="/2025/04/04/leetcode/leetcode-1005/">maximize-sum-of-array-after-k-negations(leetcode 1005)</a>
           </li>
         
           <li>
-            <a href="/2025/03/28/leetcode-55/">Jump Game（LeetCode 55）</a>
+            <a href="/2025/04/01/leetcode/leetcode-45/">Jump Game II（LeetCode 45）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/28/leetcode/leetcode-55/">Jump Game（LeetCode 55）</a>
           </li>
         
           <li>
