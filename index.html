@@ -117,11 +117,68 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/04/leetcode/leetcode-1005/" data-id="cm92luq2c0003h76k6tn49yet" data-title="maximize-sum-of-array-after-k-negations(leetcode 1005)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/04/04/leetcode/leetcode-1005/" data-id="cm95emr560003466kb8mm4rql" data-title="maximize-sum-of-array-after-k-negations(leetcode 1005)" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-leetcode/leetcode-134" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/04/leetcode/leetcode-134/" class="article-date">
+  <time class="dt-published" datetime="2025-04-04T09:00:00.000Z" itemprop="datePublished">2025-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>►<a class="article-category-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a>►<a class="article-category-link" href="/categories/LeetCode/Greedy-Algorithm/134-Gas-Station/">134 Gas Station</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/04/04/leetcode/leetcode-134/">134 Gas Station</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Problem-Description"><a href="#1-Problem-Description" class="headerlink" title="1 Problem Description"></a>1 Problem Description</h1><p>link: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/description/">(https://leetcode.com/problems/gas-station/description/)</a></p>
+<p>There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].</p>
+<p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from the ith station to its next (i + 1)th station. You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Given two integer arrays gas and cost, return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1. If there exists a solution, it is guaranteed to be unique.</p>
+<p>Example 1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 4. Your tank = 4 - 1 + 5 = 8</span><br><span class="line">Travel to station 0. Your tank = 8 - 2 + 1 = 7</span><br><span class="line">Travel to station 1. Your tank = 7 - 3 + 2 = 6</span><br><span class="line">Travel to station 2. Your tank = 6 - 4 + 3 = 5</span><br><span class="line">Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.</span><br><span class="line">Therefore, return 3 as the starting index.</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: gas = [2,3,4], cost = [3,4,3]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation:</span><br><span class="line">You can&#x27;t start at station 0 or 1, as there is not enough gas to travel to the next station.</span><br><span class="line">Let&#x27;s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 0. Your tank = 4 - 3 + 2 = 3</span><br><span class="line">Travel to station 1. Your tank = 3 - 3 + 3 = 3</span><br><span class="line">You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.</span><br><span class="line">Therefore, you can&#x27;t travel around the circuit once no matter where you start.</span><br></pre></td></tr></table></figure>
+
+<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><ol>
+<li>if the sum of (gas[i]-cost[i]) less than zero, the start index should be i+1;</li>
+<li>if the sum of all the (gas[i]-cost[i]) less than zero, no matter when we start, we can’t reach the destination.</li>
+</ol>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int canCompleteCircuit(int[] gas, int[] cost) &#123;</span><br><span class="line">        int currentRemain = 0;</span><br><span class="line">        int total=0;</span><br><span class="line">        int index = 0;</span><br><span class="line">        for(int i=0;i&lt;gas.length;i++)&#123;</span><br><span class="line">            currentRemain += gas[i]-cost[i];</span><br><span class="line">            total += gas[i]-cost[i];</span><br><span class="line">            // if currentRemain&lt;0 there is no answer before i</span><br><span class="line">            if(currentRemain&lt;0)&#123;</span><br><span class="line">                index = i+1;</span><br><span class="line">                currentRemain = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // if total &lt; 0, there is no answer for the path</span><br><span class="line">        if(total&lt;0) return -1;</span><br><span class="line">        return index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/04/04/leetcode/leetcode-134/" data-id="cm95emr560004466k9qpc0suf" data-title="134 Gas Station" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/134-Gas-Station/" rel="tag">134 Gas Station</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
 
     </footer>
   </div>
@@ -170,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/01/leetcode/leetcode-45/" data-id="cm92luq2d0004h76khazcdqbn" data-title="Jump Game II（LeetCode 45）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/04/01/leetcode/leetcode-45/" data-id="cm95emr5i0016466kcmrb6nf0" data-title="Jump Game II（LeetCode 45）" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -222,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/28/leetcode/leetcode-55/" data-id="cm92luq2g0007h76khgqw0ay1" data-title="Jump Game（LeetCode 55）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/28/leetcode/leetcode-55/" data-id="cm95emr5a0007466k0swzgsbh" data-title="Jump Game（LeetCode 55）" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -300,7 +357,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/27/My-First-Blog/" data-id="cm92luq280001h76kdzdt12ev" data-title="Hexo init" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/27/My-First-Blog/" data-id="cm95emr540002466kftcybwwl" data-title="Hexo init" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -351,7 +408,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/27/hello-world/" data-id="cm92luq2b0002h76kesyh6jbv" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/03/27/hello-world/" data-id="cm95emr510001466kexp40052" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -373,7 +430,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/1005-maximize-sum-of-array-after-k-negations/">1005 maximize-sum-of-array-after-k-negations</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/45-Jump-Game-II/">45 Jump Game II</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/55-Jump-Game/">55 Jump Game</a></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/1005-maximize-sum-of-array-after-k-negations/">1005 maximize-sum-of-array-after-k-negations</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/134-Gas-Station/">134 Gas Station</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/45-Jump-Game-II/">45 Jump Game II</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/55-Jump-Game/">55 Jump Game</a></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -383,7 +440,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/45-Jump-Game-II/" rel="tag">45 Jump Game II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/55-Jump-Game/" rel="tag">55 Jump Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/134-Gas-Station/" rel="tag">134 Gas Station</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/45-Jump-Game-II/" rel="tag">45 Jump Game II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/55-Jump-Game/" rel="tag">55 Jump Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
     </div>
   </div>
 
@@ -393,7 +450,7 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/1005-maximize-sum-of-array-after-k-negations/" style="font-size: 10px;">1005 maximize-sum-of-array-after-k-negations</a> <a href="/tags/45-Jump-Game-II/" style="font-size: 10px;">45 Jump Game II</a> <a href="/tags/55-Jump-Game/" style="font-size: 10px;">55 Jump Game</a> <a href="/tags/Greedy-Algorithm/" style="font-size: 20px;">Greedy Algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a>
+      <a href="/tags/1005-maximize-sum-of-array-after-k-negations/" style="font-size: 10px;">1005 maximize-sum-of-array-after-k-negations</a> <a href="/tags/134-Gas-Station/" style="font-size: 10px;">134 Gas Station</a> <a href="/tags/45-Jump-Game-II/" style="font-size: 10px;">45 Jump Game II</a> <a href="/tags/55-Jump-Game/" style="font-size: 10px;">55 Jump Game</a> <a href="/tags/Greedy-Algorithm/" style="font-size: 20px;">Greedy Algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a>
     </div>
   </div>
 
@@ -419,6 +476,10 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
           </li>
         
           <li>
+            <a href="/2025/04/04/leetcode/leetcode-134/">134 Gas Station</a>
+          </li>
+        
+          <li>
             <a href="/2025/04/01/leetcode/leetcode-45/">Jump Game II（LeetCode 45）</a>
           </li>
         
@@ -428,10 +489,6 @@ If successful, you should see a message like:<br><code>Hi username! You&#39;ve s
         
           <li>
             <a href="/2025/03/27/My-First-Blog/">Hexo init</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/27/hello-world/">Hello World</a>
           </li>
         
       </ul>
