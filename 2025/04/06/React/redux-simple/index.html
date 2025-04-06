@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>A simple example for react-redux | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1 Add redux1yarn add react-redux  2 Create a ReducerReducer is a function which can change the state data. 12345678910111213const initData &#x3D; 0function counterReducer(preState&#x3D;initData,action)&#123;		c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A simple example for react-redux">
+<meta property="og:url" content="http://example.com/2025/04/06/React/redux-simple/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 Add redux1yarn add react-redux  2 Create a ReducerReducer is a function which can change the state data. 12345678910111213const initData &#x3D; 0function counterReducer(preState&#x3D;initData,action)&#123;		c">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-06T09:03:44.000Z">
+<meta property="article:modified_time" content="2025-04-06T09:09:10.177Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-React/redux-simple" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/06/React/redux-simple/" class="article-date">
+  <time class="dt-published" datetime="2025-04-06T09:03:44.000Z" itemprop="datePublished">2025-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a>►<a class="article-category-link" href="/categories/React/React-redux/">React-redux</a>►<a class="article-category-link" href="/categories/React/React-redux/A-simple-example-for-react-redux/">A simple example for react-redux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      A simple example for react-redux
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Add-redux"><a href="#1-Add-redux" class="headerlink" title="1 Add redux"></a>1 Add redux</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-redux</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-Create-a-Reducer"><a href="#2-Create-a-Reducer" class="headerlink" title="2 Create a Reducer"></a>2 Create a Reducer</h1><p>Reducer is a function which can change the state data.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const initData = 0</span><br><span class="line"></span><br><span class="line">function counterReducer(preState=initData,action)&#123;</span><br><span class="line">		const &#123;type,data&#125;=action</span><br><span class="line">		switch(type)&#123;</span><br><span class="line">			case &#x27;increment&#x27;:</span><br><span class="line">					return preState+data</span><br><span class="line">			case &#x27;decrement&#x27;:</span><br><span class="line">					return preState-data</span><br><span class="line">			default:</span><br><span class="line">					return preState</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-create-store"><a href="#3-create-store" class="headerlink" title="3 create store"></a>3 create store</h1><p>Store is a storage to store the state, and connect to the reducer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore&#125; from &#x27;redux&#x27;</span><br><span class="line">import &#123;counterReducer&#125; from ./counterReducer</span><br><span class="line"></span><br><span class="line">export default createStore(counterReducer)</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-the-Count-page"><a href="#4-the-Count-page" class="headerlink" title="4 the Count page"></a>4 the Count page</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import store from &quot;../../redux/store&quot;;</span><br><span class="line"></span><br><span class="line">export default class Count extends Component &#123;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    store.subscribe(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  increment = () =&gt; &#123;</span><br><span class="line">    const &#123; value &#125; = this.selectNum;</span><br><span class="line">    store.dispatch(&#123; type: &quot;increment&quot;, data: value * 1 &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  decrement = () =&gt; &#123;</span><br><span class="line">    const &#123; value &#125; = this.selectNum;</span><br><span class="line">    console.log(value);</span><br><span class="line">    store.dispatch(&#123; type: &quot;decrement&quot;, data: value * 1 &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Current Result: &#123;store.getState()&#125;&lt;/h1&gt;</span><br><span class="line">        &lt;select ref=&#123;(c) =&gt; (this.selectNum = c)&#125;&gt;</span><br><span class="line">          &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;</span><br><span class="line">          &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;</span><br><span class="line">          &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.increment&#125;&gt;add&lt;/button&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.decrement&#125;&gt;minus&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/04/06/React/redux-simple/" data-id="cm95f86mu0003im6k7wgxb3dr" data-title="A simple example for react-redux" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/04/06/leetcode/leetcode-134/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">134 Gas Station</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/">Greedy Algorithm</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/1005-maximize-sum-of-array-after-k-negations/">1005 maximize-sum-of-array-after-k-negations</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/134-Gas-Station/">134 Gas Station</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/45-Jump-Game-II/">45 Jump Game II</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/Greedy-Algorithm/55-Jump-Game/">55 Jump Game</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/React/React-redux/">React-redux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/React/React-redux/A-simple-example-for-react-redux/">A simple example for react-redux</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1005-maximize-sum-of-array-after-k-negations/" rel="tag">1005 maximize-sum-of-array-after-k-negations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/134-Gas-Station/" rel="tag">134 Gas Station</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/45-Jump-Game-II/" rel="tag">45 Jump Game II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/55-Jump-Game/" rel="tag">55 Jump Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/1005-maximize-sum-of-array-after-k-negations/" style="font-size: 10px;">1005 maximize-sum-of-array-after-k-negations</a> <a href="/tags/134-Gas-Station/" style="font-size: 10px;">134 Gas Station</a> <a href="/tags/45-Jump-Game-II/" style="font-size: 10px;">45 Jump Game II</a> <a href="/tags/55-Jump-Game/" style="font-size: 10px;">55 Jump Game</a> <a href="/tags/Greedy-Algorithm/" style="font-size: 20px;">Greedy Algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/04/06/React/redux-simple/">A simple example for react-redux</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/06/leetcode/leetcode-134/">134 Gas Station</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/04/leetcode/leetcode-1005/">maximize-sum-of-array-after-k-negations(leetcode 1005)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/01/leetcode/leetcode-45/">Jump Game II（LeetCode 45）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/28/leetcode/leetcode-55/">Jump Game（LeetCode 55）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
